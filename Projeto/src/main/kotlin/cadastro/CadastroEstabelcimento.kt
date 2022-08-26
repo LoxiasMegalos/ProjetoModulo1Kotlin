@@ -8,9 +8,18 @@ class CadastroEstabelcimento(
     private val cnpj: String
 ) : Cadastro(nome, login, senha, telefone) {
 
+    companion object{
+        val cnpjsCadastrados = mutableSetOf<String>()
+    }
+
     init{
         if(cnpj.length == 14){
-            println("Estabelecimento $nome cadastrado com sucesso")
+            if(cnpj !in cnpjsCadastrados){
+                println("Estabelecimento $nome cadastrado com sucesso")
+                cnpjsCadastrados.add(cnpj)
+            } else{
+                throw IllegalArgumentException ("CNPJ Já Cadastrado no sistema!")
+            }
         } else {
             throw IllegalArgumentException ("CNPJ Inválido!")
         }

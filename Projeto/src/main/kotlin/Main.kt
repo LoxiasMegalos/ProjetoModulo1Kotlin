@@ -82,7 +82,7 @@ fun addComentario() {
 fun deletaPostagens() {
     print("Digite o nome do responsavel por este post: ")
     val resp = readln()
-
+    try{
     for(cadastro in listaCadastros){
         if(cadastro.pegaNome() == resp && cadastro is CadastroMedico){
 
@@ -110,6 +110,10 @@ fun deletaPostagens() {
             println("Post não pertence ao seu estabelecimento!")
             break
         }
+    }
+
+    }catch (e: Exception){
+        println("id da postagem nao encontrado")
     }
 
 }

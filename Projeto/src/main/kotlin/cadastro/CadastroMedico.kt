@@ -9,9 +9,22 @@ class CadastroMedico(
     val crm: String
 ) : Cadastro(nome, login, senha, telefone) {
 
+
+
     init{
         if(cpf.length == 11 && crm.length == 8){
-            println("Medico $nome cadastrado com sucesso")
+            if(cpf !in CadastroUsuario.cpfsCadastrados && crm !in crmMedicosCadastrados){
+                println("Medico $nome cadastrado com sucesso")
+                CadastroUsuario.cpfsCadastrados.add(cpf)
+                crmMedicosCadastrados.add(crm)
+            } else if(cpf !in CadastroUsuario.cpfsCadastrados && crm in crmMedicosCadastrados){
+                throw IllegalArgumentException ("Cadastro Inválido! - CRM já no sistema")
+            }else if(cpf in CadastroUsuario.cpfsCadastrados && crm !in crmMedicosCadastrados){
+                throw IllegalArgumentException ("Cadastro Inválido! - CPF já no sistema")
+            } else{
+                throw IllegalArgumentException ("Cadastro Inválido! - CPF e CRM já no sistema")
+            }
+
         } else {
             throw IllegalArgumentException ("Cadastro Inválido!")
         }
@@ -19,7 +32,9 @@ class CadastroMedico(
     }
 
     companion object{
+
         val postagens = mutableListOf<String>()
+        private val crmMedicosCadastrados = mutableSetOf<String>()
 
         fun listarPostagens():String{
             var posts = ""
@@ -42,12 +57,14 @@ class CadastroMedico(
         return "O post nao pode estar em branco"
     }
 
-    fun deletarPostagem(postDeletado: Int): String{
+    fun deletarPostagem(postDeletado: Int): String?{
+
         if(postagens.contains(postagens.get(postDeletado))){
+
             postagens.removeAt(postDeletado)
             return "Post deletado com sucesso"
         }
-        return "O Post $postDeletado nao existe"
+        return ""
     }
 
     /*

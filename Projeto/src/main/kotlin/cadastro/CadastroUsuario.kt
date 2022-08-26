@@ -8,9 +8,19 @@ class CadastroUsuario(
     val cpf: String
 ) : Cadastro(nome, login, senha, telefone) {
 
+    companion object{
+         val cpfsCadastrados = mutableSetOf<String>()
+    }
+
     init{
         if(cpf.length == 11){
-            println("Usuario $nome cadastrado com sucesso")
+            if(cpf !in cpfsCadastrados){
+                println("Usuario $nome cadastrado com sucesso")
+                cpfsCadastrados.add(cpf)
+            }
+            else{
+                throw IllegalArgumentException ("CPF Já cadastrado")
+            }
         } else {
             throw IllegalArgumentException ("CPF Inválido!")
         }
