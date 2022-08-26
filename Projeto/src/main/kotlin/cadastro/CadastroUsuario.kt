@@ -8,15 +8,12 @@ class CadastroUsuario(
     val cpf: String
 ) : Cadastro(nome, login, senha, telefone) {
 
-    companion object{
-         val cpfsCadastrados = mutableSetOf<String>()
-    }
 
     init{
         if(cpf.length == 11){
-            if(cpf !in cpfsCadastrados){
+            if(cpf !in BancoDeInformacoes.cpfsCadastrados){
                 println("Usuario $nome cadastrado com sucesso")
-                cpfsCadastrados.add(cpf)
+                BancoDeInformacoes.cpfsCadastrados.add(cpf)
             }
             else{
                 throw IllegalArgumentException ("CPF Já cadastrado")
@@ -34,14 +31,14 @@ class CadastroUsuario(
 
     fun adicionarComentario (id:Int, comentario:String):String{
         try{
-        for(post in 0..CadastroMedico.postagens.size){
+        for(post in 0..Postagens.postagens.size){
             if(post == id-1){
 
-                var postmodificado = CadastroMedico.postagens.get(post)
-                CadastroMedico.postagens.removeAt(post)
+                var postmodificado = Postagens.postagens.get(post)
+                Postagens.postagens.removeAt(post)
 
                 postmodificado += "\ncomentario: $comentario - autor: $nome"
-                CadastroMedico.postagens.add(postmodificado)
+                Postagens.postagens.add(postmodificado)
                 return "Comentario de $nome adicionado com sucesso!"
             }
         }

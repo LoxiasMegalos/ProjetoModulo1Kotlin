@@ -1,7 +1,4 @@
-import cadastro.Cadastro
-import cadastro.CadastroEstabelcimento
-import cadastro.CadastroMedico
-import cadastro.CadastroUsuario
+import cadastro.*
 
 val listaCadastros = mutableListOf<Cadastro>()
 
@@ -31,7 +28,7 @@ fun main(args: Array<String>) {
                     }
                     3 -> {
                         println("Listando Postagens...")
-                        println(CadastroMedico.listarPostagens())
+                        println(Postagens.listarPostagens())
                     }
                     4 -> {
                         println("Criando postagens!")
@@ -89,7 +86,7 @@ fun deletaPostagens() {
             print("Digite o id do post que será deletado: ")
             val id = readln().toInt()
 
-            if(CadastroMedico.postagens.get(id-1).contains(resp)){
+            if(Postagens.postagens.get(id-1).contains(resp)){
 
                 println(cadastro.deletarPostagem(id-1))
                 break
@@ -102,7 +99,7 @@ fun deletaPostagens() {
             print("Digite o id do post que será deletado: ")
             val id = readln().toInt()
 
-            if(CadastroMedico.postagens.get(id-1).contains(resp)){
+            if(Postagens.postagens.get(id-1).contains(resp)){
                 println(cadastro.deletarPostagem(id-1))
                 break
             }

@@ -13,13 +13,13 @@ class CadastroMedico(
 
     init{
         if(cpf.length == 11 && crm.length == 8){
-            if(cpf !in CadastroUsuario.cpfsCadastrados && crm !in crmMedicosCadastrados){
+            if(cpf !in BancoDeInformacoes.cpfsCadastrados && crm !in BancoDeInformacoes.crmCadastrados){
                 println("Medico $nome cadastrado com sucesso")
-                CadastroUsuario.cpfsCadastrados.add(cpf)
-                crmMedicosCadastrados.add(crm)
-            } else if(cpf !in CadastroUsuario.cpfsCadastrados && crm in crmMedicosCadastrados){
+                BancoDeInformacoes.cpfsCadastrados.add(cpf)
+                BancoDeInformacoes.crmCadastrados.add(crm)
+            } else if(cpf !in BancoDeInformacoes.cpfsCadastrados && crm in BancoDeInformacoes.crmCadastrados){
                 throw IllegalArgumentException ("Cadastro Inválido! - CRM já no sistema")
-            }else if(cpf in CadastroUsuario.cpfsCadastrados && crm !in crmMedicosCadastrados){
+            }else if(cpf in BancoDeInformacoes.cpfsCadastrados && crm !in BancoDeInformacoes.crmCadastrados){
                 throw IllegalArgumentException ("Cadastro Inválido! - CPF já no sistema")
             } else{
                 throw IllegalArgumentException ("Cadastro Inválido! - CPF e CRM já no sistema")
@@ -31,27 +31,32 @@ class CadastroMedico(
 
     }
 
+    /*
     companion object{
 
-        val postagens = mutableListOf<String>()
-        private val crmMedicosCadastrados = mutableSetOf<String>()
+        //val postagens = mutableListOf<String>()
+        //private val crmMedicosCadastrados = mutableSetOf<String>()
 
+        /*
         fun listarPostagens():String{
             var posts = ""
             var id = 1
-            for(postagem in postagens){
+            for(postagem in Postagens.postagens){
                 posts += "id: ${id} - "+ postagem + "\n"
                 id++
             }
             return posts
         }
+         */
+
     }
+    */
 
     fun criarPostagem(post: String):String{
         var postagem = "Médico(a) $nome postou:\n"
         postagem += post
         if(post.isNotBlank()){
-            postagens.add(postagem)
+            Postagens.postagens.add(postagem)
             return "Post de $nome Criado com sucesso"
         }
         return "O post nao pode estar em branco"
@@ -59,9 +64,9 @@ class CadastroMedico(
 
     fun deletarPostagem(postDeletado: Int): String?{
 
-        if(postagens.contains(postagens.get(postDeletado))){
+        if(Postagens.postagens.contains(Postagens.postagens.get(postDeletado))){
 
-            postagens.removeAt(postDeletado)
+            Postagens.postagens.removeAt(postDeletado)
             return "Post deletado com sucesso"
         }
         return ""
