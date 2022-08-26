@@ -22,19 +22,21 @@ class CadastroUsuario(
     }
 
 
-    fun adicionarComentario (id:Int, comentario:String){
+    fun adicionarComentario (id:Int, comentario:String):String{
         try{
         for(post in 0..CadastroMedico.postagens.size){
-            if(post == id){
+            if(post == id-1){
 
                 var postmodificado = CadastroMedico.postagens.get(post)
                 CadastroMedico.postagens.removeAt(post)
 
                 postmodificado += "\ncomentario: $comentario - autor: $nome"
                 CadastroMedico.postagens.add(postmodificado)
-                return
+                return "Comentario de $nome adicionado com sucesso!"
             }
-        }}catch (e: Exception){
+        }
+            return ""
+        }catch (e: Exception){
             throw Exception ("Id do post não encontrado nas postagens")
         }
     }

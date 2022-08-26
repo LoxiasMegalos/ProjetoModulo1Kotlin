@@ -23,7 +23,7 @@ class CadastroMedico(
 
         fun listarPostagens():String{
             var posts = ""
-            var id = 0
+            var id = 1
             for(postagem in postagens){
                 posts += "id: ${id} - "+ postagem + "\n"
                 id++
@@ -32,22 +32,22 @@ class CadastroMedico(
         }
     }
 
-    fun criarPostagem(post: String){
-        var postagem = "Médico $nome postou:\n"
+    fun criarPostagem(post: String):String{
+        var postagem = "Médico(a) $nome postou:\n"
         postagem += post
         if(post.isNotBlank()){
             postagens.add(postagem)
-            return
+            return "Post de $nome Criado com sucesso"
         }
-        println("O post nao pode estar em branco")
+        return "O post nao pode estar em branco"
     }
 
-    fun deletarPostagem(postDeletado: Int){
-        if(CadastroMedico.postagens.contains(CadastroMedico.postagens.get(postDeletado))){
-            CadastroMedico.postagens.removeAt(postDeletado)
-            return
+    fun deletarPostagem(postDeletado: Int): String{
+        if(postagens.contains(postagens.get(postDeletado))){
+            postagens.removeAt(postDeletado)
+            return "Post deletado com sucesso"
         }
-        println("O $postDeletado nao existe")
+        return "O Post $postDeletado nao existe"
     }
 
     /*

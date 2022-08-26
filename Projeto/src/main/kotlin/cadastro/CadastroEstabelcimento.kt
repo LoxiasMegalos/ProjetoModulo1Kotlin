@@ -17,23 +17,23 @@ class CadastroEstabelcimento(
 
     }
 
-    fun criarPostagem(post: String){
+    fun criarPostagem(post: String):String{
         var postagem = "Estabelecimento $nome postou:\n"
         postagem += post
         if(post.isNotBlank()){
 
             CadastroMedico.postagens.add(postagem)
-            return
+            return "Post de $nome criado com sucesso"
         }
-        println("O post nao pode estar em branco")
+        return "O post nao pode estar em branco"
     }
 
-    fun deletarPostagem(postDeletado: Int){
+    fun deletarPostagem(postDeletado: Int):String{
         if(CadastroMedico.postagens.contains(CadastroMedico.postagens.get(postDeletado))){
             CadastroMedico.postagens.removeAt(postDeletado)
-            return
+            return "Post id $postDeletado deletado com sucesso"
         }
-        println("O $postDeletado nao existe")
+        return "O Post id $postDeletado nao existe"
     }
 
     /*

@@ -73,7 +73,8 @@ fun addComentario() {
 
             print("Informe o id do post que quer comentar: ")
             val id = readln().toInt()
-            cadastro.adicionarComentario(id,comentario)
+            println(cadastro.adicionarComentario(id,comentario))
+
         }
     }
 }
@@ -88,8 +89,9 @@ fun deletaPostagens() {
             print("Digite o id do post que será deletado: ")
             val id = readln().toInt()
 
-            if(CadastroMedico.postagens.get(id).contains(resp)){
-                cadastro.deletarPostagem(id)
+            if(CadastroMedico.postagens.get(id-1).contains(resp)){
+
+                println(cadastro.deletarPostagem(id-1))
                 break
             }
 
@@ -100,8 +102,8 @@ fun deletaPostagens() {
             print("Digite o id do post que será deletado: ")
             val id = readln().toInt()
 
-            if(CadastroMedico.postagens.get(id).contains(resp)){
-                cadastro.deletarPostagem(id)
+            if(CadastroMedico.postagens.get(id-1).contains(resp)){
+                println(cadastro.deletarPostagem(id-1))
                 break
             }
 
@@ -159,14 +161,14 @@ fun criandoPosts(){
             println("Olá doutor(a) ${cadastro.pegaNome()}")
             print("Insira sua postagem: ")
             val post = readln()
-            cadastro.criarPostagem(post)
+            println(cadastro.criarPostagem(post))
             break
         }
         else if( cadastro.pegaNome() == nome && cadastro is CadastroEstabelcimento){
             println("Olá estabelecimento ${cadastro.pegaNome()}")
             print("Insira sua postagem: ")
             val post = readln()
-            cadastro.criarPostagem(post)
+            println(cadastro.criarPostagem(post))
             break
         }
     }
