@@ -1,6 +1,6 @@
 package cadastro
 
-class CadastroEstabelcimento(
+class CadastroEstabelecimento(
     nome: String,
     login: String,
     senha: String,

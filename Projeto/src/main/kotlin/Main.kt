@@ -95,7 +95,7 @@ fun deletaPostagens() {
             println("Post não pertence a este médico!")
             break
 
-        } else if(cadastro.pegaNome() == resp && cadastro is CadastroEstabelcimento){
+        } else if(cadastro.pegaNome() == resp && cadastro is CadastroEstabelecimento){
             print("Digite o id do post que será deletado: ")
             val id = readln().toInt()
 
@@ -145,7 +145,7 @@ fun cadastroUsuario(){
     else if(opcao == 3){
         print("informe o cnpj: ")
         val cnpj = readln()
-        val cadastro = CadastroEstabelcimento(nome, login, senha, telefone, cnpj)
+        val cadastro = CadastroEstabelecimento(nome, login, senha, telefone, cnpj)
         listaCadastros.add(cadastro)
     }
     else {
@@ -165,7 +165,7 @@ fun criandoPosts(){
             println(cadastro.criarPostagem(post))
             break
         }
-        else if( cadastro.pegaNome() == nome && cadastro is CadastroEstabelcimento){
+        else if( cadastro.pegaNome() == nome && cadastro is CadastroEstabelecimento){
             println("Olá estabelecimento ${cadastro.pegaNome()}")
             print("Insira sua postagem: ")
             val post = readln()
